@@ -10,12 +10,12 @@
     <title>{{ config('app.name', 'The Real Estate App') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('./js/app.js') }}" defer></script>
     <link href="https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css" rel="stylesheet">
 
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('./css/app.css') }}" rel="stylesheet">
 </head>
 <body style="background-color: red">
     <div id="app">
