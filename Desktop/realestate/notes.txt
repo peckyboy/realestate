@@ -1,0 +1,43 @@
+to make an auth:
+php artisan ui:auth
+
+in the app/http/controllers/auth/registercontroller.php you'd see a validator function that is used to validate the input from the backend. its an array of things tha must be passed
+if you modify that controller, you have to modify the database/migrations/create_users_table to reflect the modification
+
+you can interact with your app with tinker in the command prompt:
+    php artisan tinker
+in the tinker:
+User::all()//where user is the name returned in the registercontroller and the file is in app/User (which is the model). all() gets all the users in the table
+if u make mods to the user table and the registercontroller, you have to run php artisan migrate:fresh to refresh the db and then go to the model add add/modify the necessary
+
+
+larvel has what is called restful controllers:
+Verb	    Path	            Action	    Route Name
+GET	        /photo	            index	    photo.index
+GET	        /photo/create	    create	    photo.create
+POST	    /photo	            store	    photo.store
+GET	        /photo/{photo}	    show	    photo.show
+GET	        /photo/{photo}/edit	edit	    photo.edit
+PUT/PATCH	/photo/{photo}	    update	    photo.update
+DELETE	    /photo/{photo}	    destroy	    photo.destroy
+
+to make controller: 
+    php artisan make:controller NameofController
+...this creates the above table,then it can be registered in the routes as:
+    Route::('route', NameofController) or specify only certain actions
+    Route::resource('photo', 'PhotoController',['only' => ['index', 'show']]);
+
+    Route::resource('photo', 'PhotoController',['except' => ['create', 'store', 'update', 'destroy']]);
+
+the dd($var); function is die() in controllers
+
+to look for a val in the db,
+User::find($var)//this searches by the id...returns null if not found
+
+you can create a model with: 
+    php artisan make:model Profile -m 
+the -m is for migration
+
+in the created table migration, add the fields u wanna include then run:
+    php artisan migrate
+this creates the table.
